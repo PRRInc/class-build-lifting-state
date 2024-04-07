@@ -3,7 +3,8 @@ import { dogsData } from "./data";
 import DogListItem from "./Components/DogListItem";
 import NewDogForm from "./Components/NewDogForm";
 
-function App() {
+function App(props) {
+  console.log(props);
   const [dogs, setDogs] = useState(dogsData);
   const [showNewDogForm, setNewDogForm] = useState(false);
 
@@ -26,6 +27,7 @@ function App() {
     dogArray[index].present = !dogArray[index].present;
     setDogs(dogArray);
   }
+
   return (
     <div className="App">
       <header>
@@ -36,12 +38,16 @@ function App() {
           <button onClick={toggleNewDogForm}>
             {showNewDogForm ? "hide form" : "Add a new dog"}
           </button>
-          {showNewDogForm ? <NewDogForm /> : null}
+          {showNewDogForm ? <NewDogForm handleAddDog={handleAddDog} toggleNewDogForm={toggleNewDogForm} /> : null}
         </div>
         <div>
           <ul>
             {dogs.map((dog) => {
-              return <DogListItem dog={dog} key={dog.id} />;
+              return <DogListItem
+              key={dog.id} 
+              dog={dog} 
+              updateDogAttendance={updateDogAttendance} 
+              removeDog={removeDog}/>;
             })}
           </ul>
         </div>

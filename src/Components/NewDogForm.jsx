@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { v1 as generateUniqueID } from "uuid";
 
-export default function NewDogForm() {
+export default function NewDogForm({ handleAddDog, toggleNewDogForm }) {
+  console.log(handleAddDog, toggleNewDogForm);
   const [checked, setChecked] = useState(false);
   const [selectOption, setSelectOption] = useState("");
   const [newDog, setNewDog] = useState({
@@ -27,7 +28,7 @@ export default function NewDogForm() {
       favFlavor: selectOption,
       contact: newDog.contact,
     };
-    // handleAddDog(createDog);
+    handleAddDog(createDog);
   }
 
   function handleCheckboxChange() {
@@ -42,7 +43,7 @@ export default function NewDogForm() {
     event.preventDefault();
     addDog();
     resetDogForm();
-    // toggleNewDogForm();
+    toggleNewDogForm();
   }
 
   function handleTextChange(event) {
@@ -50,6 +51,7 @@ export default function NewDogForm() {
       ...newDog,
       [event.target.id]: event.target.value,
     });
+    console.log(newDog);
   }
   function resetDogForm() {
     setNewDog({
