@@ -14,7 +14,7 @@ export default function DogListItem({ dog, updateDogAttendance, removeDog }) {
         {dog.name}{" "}
       </span>
 
-      <button onClick={() => removeDog(dog.id)}>remove</button>
+      <button onClick={() => removeDog(dog.id)}>Remove</button>
       <DogDetails dog={dog} />
     </li>
   );
